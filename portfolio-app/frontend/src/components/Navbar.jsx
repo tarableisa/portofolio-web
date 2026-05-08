@@ -37,6 +37,12 @@ function Navbar() {
           <li onClick={() => scrollToSection('skills')}>
             <span className="nav-icon">⚡</span> Skills
           </li>
+          <li onClick={() => scrollToSection('courses')}>
+            <span className="nav-icon">📚</span> Courses
+          </li>
+          <li onClick={() => scrollToSection('certifications')}>
+            <span className="nav-icon">🏆</span> Certifications
+          </li>
           <li onClick={() => scrollToSection('projects')}>
             <span className="nav-icon">🚀</span> Projects
           </li>

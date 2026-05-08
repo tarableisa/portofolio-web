@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Profile, SocialLink, Experience, Skill, Project, Approach
+from image_cropping import ImageCroppingMixin
+from .models import Profile, SocialLink, Experience, Skill, Project, Approach, CourseTraining, Certification
 
 # Register your models here.
 @admin.register(Profile)
-class ProfileAdmin(admin.ModelAdmin):
+class ProfileAdmin(ImageCroppingMixin, admin.ModelAdmin):
     list_display = ('name', 'title')
     search_fields = ('name', 'title')
 
@@ -38,4 +39,16 @@ class ProjectAdmin(admin.ModelAdmin):
 @admin.register(Approach)
 class ApproachAdmin(admin.ModelAdmin):
     list_display = ('title', 'order')
+    ordering = ('order',)
+
+@admin.register(CourseTraining)
+class CourseTrainingAdmin(admin.ModelAdmin):
+    list_display = ('course_name', 'organization', 'date', 'order')
+    search_fields = ('course_name', 'organization', 'description')
+    ordering = ('-date',)
+
+@admin.register(Certification)
+class CertificationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order')
+    search_fields = ('name',)
     ordering = ('order',)

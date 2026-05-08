@@ -30,6 +30,12 @@ export const portfolioAPI = {
   
   // Approaches
   getApproaches: () => api.get('/approaches/'),
+  
+  // Courses & Trainings
+  getCourses: () => api.get('/courses/'),
+  
+  // Certifications
+  getCertifications: () => api.get('/certifications/'),
 };
 
 export default api;

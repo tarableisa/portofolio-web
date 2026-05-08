@@ -1,13 +1,15 @@
 # api/views.py
 from rest_framework import viewsets
-from .models import Profile, SocialLink, Experience, Skill, Project, Approach
+from .models import Profile, SocialLink, Experience, Skill, Project, Approach, CourseTraining, Certification
 from .serializers import (
     ProfileSerializer, 
     SocialLinkSerializer, 
     ExperienceSerializer, 
     SkillSerializer, 
     ProjectSerializer,
-    ApproachSerializer
+    ApproachSerializer,
+    CourseTrainingSerializer,
+    CertificationSerializer
 )
 
 class ProfileViewSet(viewsets.ModelViewSet):
@@ -33,3 +35,11 @@ class ProjectViewSet(viewsets.ModelViewSet):
 class ApproachViewSet(viewsets.ModelViewSet):
     queryset = Approach.objects.all()
     serializer_class = ApproachSerializer
+
+class CourseTrainingViewSet(viewsets.ModelViewSet):
+    queryset = CourseTraining.objects.all()
+    serializer_class = CourseTrainingSerializer
+
+class CertificationViewSet(viewsets.ModelViewSet):
+    queryset = Certification.objects.all()
+    serializer_class = CertificationSerializer

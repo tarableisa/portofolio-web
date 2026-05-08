@@ -10,7 +10,9 @@ from api.views import (
     ExperienceViewSet,
     SkillViewSet,
     ProjectViewSet,
-    ApproachViewSet
+    ApproachViewSet,
+    CourseTrainingViewSet,
+    CertificationViewSet
 )
 
 router = DefaultRouter()
@@ -20,6 +22,8 @@ router.register(r'experiences', ExperienceViewSet)
 router.register(r'skills', SkillViewSet)
 router.register(r'projects', ProjectViewSet)
 router.register(r'approaches', ApproachViewSet)
+router.register(r'courses', CourseTrainingViewSet)
+router.register(r'certifications', CertificationViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

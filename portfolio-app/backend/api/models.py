@@ -1,5 +1,6 @@
 # api/models.py
 from django.db import models
+from image_cropping import ImageRatioField
 
 # 1. Profile/About Section
 class Profile(models.Model):
@@ -8,6 +9,7 @@ class Profile(models.Model):
     bio = models.TextField()  # Short description
     cv_file = models.FileField(upload_to='cv/', blank=True, null=True)
     profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
+    cropping = ImageRatioField('profile_image', '400x400', free_crop=True)
     
     def __str__(self):
         return self.name
@@ -131,3 +133,34 @@ class Approach(models.Model):
     
     def __str__(self):
         return self.title
+
+# 7. Course & Training
+class CourseTraining(models.Model):
+    course_name = models.CharField(max_length=200)  # e.g., "Machine Learning Specialization"
+    organization = models.CharField(max_length=200)  # e.g., "Coursera", "Udemy"
+    date = models.DateField()  # Completion date
+    description = models.TextField()  # Course description or what you learned
+    image = models.ImageField(upload_to='courses/', blank=True, null=True)  # Course/activity photo
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['-date']
+        verbose_name = "Course & Training"
+        verbose_name_plural = "Courses & Trainings"
+    
+    def __str__(self):
+        return f"{self.course_name} - {self.organization}"
+
+# 8. Certifications & Licenses
+class Certification(models.Model):
+    name = models.CharField(max_length=200)  # Certificate name
+    image = models.ImageField(upload_to='certifications/')  # Certificate image
+    order = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Certification"
+        verbose_name_plural = "Certifications"
+    
+    def __str__(self):
+        return self.name

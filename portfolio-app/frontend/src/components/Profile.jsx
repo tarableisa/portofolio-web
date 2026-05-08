@@ -64,13 +64,13 @@ function Profile() {
   return (
     <div className="profile-section">
       <div className="profile-container">
-        {profile.profile_image && (
+        {(profile.profile_image_cropped || profile.profile_image) && (
           <img 
-            src={getImageUrl(profile.profile_image)} 
+            src={getImageUrl(profile.profile_image_cropped || profile.profile_image)} 
             alt={profile.name}
             className="profile-image"
             onError={(e) => {
-              console.error('Image failed to load:', profile.profile_image);
+              console.error('Image failed to load:', profile.profile_image_cropped || profile.profile_image);
               e.target.style.display = 'none';
             }}
           />
